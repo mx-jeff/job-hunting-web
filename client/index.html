@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job hunting</title>
+</head>
+<body>
+    <h1>Job hunting</h1>
+    <button id="iniciar">Iniciar</button>
+    <br>
+    <textarea name="" id="info" cols="30" rows="10"></textarea>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        const socket = io("http://localhost:5000");
+        const buttonIniciar = document.querySelector('#iniciar')
+        const info = document.querySelector('#info')
+
+        buttonIniciar.addEventListener('click', () => {
+            socket.emit("job", "python", "mx.jeferson.10@hotmail.com", "yeLVYQ7rr7vW@YB")
+        })
+        
+        socket.on('connect', function() {
+            socket.emit('init', "connect");
+        });
+
+        socket.on('message', message => {
+            console.log(message)
+            info.innerHTML += message + "\n"
+        })
+    </script>
+</body>
+</html>

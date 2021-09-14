@@ -1,0 +1,12 @@
+venv
+.vscode
+__pycache__
+debug.log
+test.html
+chromedriver.exe
+.idea
+robo.ico
+/frontend
+/output
+/app
+.env
