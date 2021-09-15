@@ -1,6 +1,8 @@
 from flask import Flask
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 from src.controllers.infojobsController import searchInfojob
+from src.controllers.vagasComController import searchVagasCom
+import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "test"
@@ -13,9 +15,19 @@ def index():
 
 
 @socketio.on('job')
-def handle_job(job, user, password):
-    print(f"{job} {user} {password}")
-    searchInfojob(job, user, password)
+def handle_job(conpany, job, infojobs_user, infojobs_password, vagas_user, vagas_password):
+    emit('message', 'Iniciando...')
+
+    print("conpany: ",conpany)
+    if conpany == "infojobs":
+        emit('message', "iniciando infojobs...")
+        searchInfojob(job, infojobs_user, infojobs_password)
+
+    elif conpany == "vagas.com":
+        emit('message', 'iniciando vagas.com...')
+        searchVagasCom(job, vagas_user, vagas_password)
+
+    # print(job, conpany, infojobs_user, infojobs_password, vagas_user, vagas_password)
 
 
 @socketio.on('init')

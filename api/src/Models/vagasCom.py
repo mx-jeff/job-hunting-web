@@ -1,3 +1,4 @@
+from flask_socketio import emit
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
@@ -39,11 +40,13 @@ class VagasCom:
         except Exception as error:
             output(f"{self.appName} Error: {error}")
             self.quitSearch()
+            emit('error', str(error))
             sys.exit()
 
         if driver.current_url == current_page:
             output(f"{self.appName} login inválido! verifique os seus dados e tende novamente")
             self.quitSearch()
+            emit('error', str(error))
             sys.exit()
 
         output(f'{self.appName} Logado com sucesso')

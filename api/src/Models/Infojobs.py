@@ -1,3 +1,4 @@
+from flask_socketio import emit
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
@@ -36,6 +37,7 @@ class Infojobs:
             except Exception as error:
                 output(f'[ERRO] {error}, contate o administrador')
                 self.quitSearch()
+                emit('error', str(f'[ERRO] {error}, contate o administrador'))
 
         self.current_url = self.driver.current_url
         self.inputForm = self.driver.find_element_by_xpath('//*[@id="Username"]')
@@ -67,7 +69,8 @@ class Infojobs:
             try:
                 self.searchJob.find_element_by_name('Palabra')
 
-            except:
+            except Exception as error:
+                emit('error', str(error))
                 raise
 
         self.searchJob.send_keys(str(jobType))
@@ -124,6 +127,7 @@ class Infojobs:
 
         except Exception as error:
             output(error)
+            # emit('error', error)
             pass          
 
     def subscribeJob(self, link):
