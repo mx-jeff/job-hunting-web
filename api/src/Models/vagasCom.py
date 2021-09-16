@@ -145,3 +145,4 @@ class VagasCom:
     def quitSearch(self):
         output(f'{self.appName} Saindo... volte sempre :)')
         self.driver.quit()
+        emit('error', str('Saindo...'))
