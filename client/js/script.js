@@ -9,6 +9,7 @@ const saveCredentials = document.querySelector('#save-credentials')
 let loadSpin
 
 
+info.style.display = "none"
 socket.on('connect', function () {
     socket.emit('init', "connect");
 });
@@ -17,15 +18,20 @@ socket.on('connect', function () {
 info.innerHTML = ``
 socket.on('message', message => {
     console.log(message)
-    if(message){
-        loadSpin.innerHTML = ''
-    }
-    info.innerHTML += `${message} </br>`
+    // if(message){
+    //     loadSpin.innerHTML = ''
+    // }
+    info.innerHTML += `${message} \n`
+
+    // info.style.height = 'auto';
+    // info.style.height = (info.scrollHeight + 10) + 'px';
+    info.scrollTo(0, info.scrollHeight);
 })
 
 // habilitar botão ao sinal de erro
 socket.on('error', err => {
     btn.disabled = false
+    info.style.display = "none"
 })
 
 // Enviar ao backend
@@ -37,12 +43,13 @@ btn.addEventListener('click',() => {
 
     btn.disabled = true
     
-    info.innerHTML = `<div id="load" class="d-flex align-items-center">
-    <strong>Carregando...</strong>
-    <div class="spinner-border ml-auto text-primary" role="status" aria-hidden="true"></div>
-    </div></br>`
+    // info.innerHTML = `<div id="load" class="d-flex align-items-center">
+    // <strong>Carregando...</strong>
+    // <div class="spinner-border ml-auto text-primary" role="status" aria-hidden="true"></div>
+    // </div></br>`
 
     // socket.emit("job", "python", "mx.jeferson.10@hotmail.com", "yeLVYQ7rr7vW@YB")
+    info.style.display = 'block'
 
     socket.emit(
         "job",

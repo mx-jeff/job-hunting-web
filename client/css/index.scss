@@ -1,14 +1,1 @@
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100%;
-}
-
-.dz0-flex-container { 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    // max-width: 790px;
-}
+@import './scss/global';
