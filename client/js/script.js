@@ -9,7 +9,13 @@ const saveCredentials = document.querySelector('#save-credentials')
 let loadSpin
 
 
+const BASE_URL = "http://localhost"
+const PORT = 5000
+
+
 info.style.display = "none"
+stopBtn.disabled = true
+
 socket.on('connect', function () {
     socket.emit('init', "connect");
 });
@@ -18,13 +24,7 @@ socket.on('connect', function () {
 info.innerHTML = ``
 socket.on('message', message => {
     console.log(message)
-    // if(message){
-    //     loadSpin.innerHTML = ''
-    // }
     info.innerHTML += `${message} \n`
-
-    // info.style.height = 'auto';
-    // info.style.height = (info.scrollHeight + 10) + 'px';
     info.scrollTo(0, info.scrollHeight);
 })
 
@@ -42,13 +42,7 @@ btn.addEventListener('click',() => {
     const storageCredentails = JSON.parse(JSONcredentails)
 
     btn.disabled = true
-    
-    // info.innerHTML = `<div id="load" class="d-flex align-items-center">
-    // <strong>Carregando...</strong>
-    // <div class="spinner-border ml-auto text-primary" role="status" aria-hidden="true"></div>
-    // </div></br>`
-
-    // socket.emit("job", "python", "mx.jeferson.10@hotmail.com", "yeLVYQ7rr7vW@YB")
+    stopBtn.disabled = false
     info.style.display = 'block'
 
     socket.emit(
@@ -61,6 +55,13 @@ btn.addEventListener('click',() => {
         storageCredentails['Senha vagas.com'] ?? password_vagas.value
     )
     loadSpin = document.querySelector('#load')
+})
+
+// Parar processo se existir
+stopBtn.addEventListener('click', async () => {
+    const response = await fetch(`${BASE_URL}:${PORT}/shutdown`)
+    if (response.status != 200) return alert('Erro na requisição ou processo não existe!')
+    alert('Encerrando...')
 })
 
 // Salvar as crendenciais no local storage
@@ -85,8 +86,6 @@ if(localStorage.getItem('credentails') !== null) {
     const storageCredentiails = Object.values(storage)
 
     credentails.forEach((credential, index) => {
-        // console.log('html: ', credential)
-        // console.log("value: ", storageCredentiails[index])
         credential.value = storageCredentiails[index]
     })
 }
