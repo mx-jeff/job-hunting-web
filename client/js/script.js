@@ -58,10 +58,19 @@ btn.addEventListener('click',() => {
 })
 
 // Parar processo se existir
-stopBtn.addEventListener('click', async () => {
-    const response = await fetch(`${BASE_URL}:${PORT}/shutdown`)
-    if (response.status != 200) return alert('Erro na requisição ou processo não existe!')
-    alert('Encerrando...')
+stopBtn.addEventListener('click', async e => {
+    e.preventDefault()
+    // stopBtn.disabled = true
+    // const response = await fetch(`${BASE_URL}:${PORT}/shutdown`)
+    // console.log(response)
+    // if (response.status != 200) return alert('Erro na requisição ou processo não existe!')
+    // alert('Encerrando...')
+    
+    socket.emit('close')
+
+    btn.disabled = false
+    stopBtn.disabled = true
+    info.style.display = "none"
 })
 
 // Salvar as crendenciais no local storage

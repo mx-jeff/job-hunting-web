@@ -25,6 +25,8 @@ def shutdown():
         print("Shutdown with Connection Error" + e.__str__())
     except BaseException as e:
         print("Shutdown Error " + e.__str__())
+    except Exception:
+        pass
 
 
 @app.route('/close_socket')
@@ -32,6 +34,12 @@ def close_socket():
     socketio.stop()
     socketio.run(app)
     return "Shutting down..."
+
+
+@socketio.on('close')
+def close_connection():
+    socketio.stop()
+    socketio.run(app)
 
 
 @socketio.on('job')
