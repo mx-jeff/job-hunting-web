@@ -16,12 +16,12 @@ def searchVagasCom(targetJob, login, password):
         vagas.quitSearch()
 
     except Exception as error:
-        output("Algum problema ocorreu e/ou as informações estão erradas!")
+        output(vagas, "Algum problema ocorreu e/ou as informações estão erradas!")
         vagas.quitSearch()
         emit('error', str(error))
 
     except KeyboardInterrupt:
-        output('Saindo, volte sempre!')
+        output(vagas, 'Saindo, volte sempre!')
         vagas.quitSearch()
         emit('error', str())
         

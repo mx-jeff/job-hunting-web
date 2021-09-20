@@ -1,3 +1,4 @@
+from api.src.utils.output import output
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
@@ -14,7 +15,7 @@ class Apinfo:
         return:=> none
         '''
         self.driver = setSelenium('https://www.apinfo.com/apinfo/')
-        print(f'{self.appName} Iniciando...')
+        output(self.driver ,f'{self.appName} Iniciando...')
 
     def searchJob(self, job):
         '''
@@ -22,15 +23,15 @@ class Apinfo:
         return:=> none
         '''
 
-        print(print(f'{self.appName} Selecionando vaga...'))
+        output(self.driver ,f'{self.appName} Selecionando vaga...')
         driver = self.driver
         self.searchBar = driver.find_element_by_id('i-busca')
         self.searchBar.send_keys(job)
         self.searchBar.send_keys(Keys.ENTER)
-        print(f'{self.appName} Feito!, buscando vagas para {job}')      
+        output(self.driver ,f'{self.appName} Feito!, buscando vagas para {job}')      
 
     def selectJob(self):
-        print(f'{self.appName} Vaga localizada!')
+        output(self.driver ,f'{self.appName} Vaga localizada!')
         
         # try click on button
         # self.button = self.driver.find_element_by_class_name('btn3 ')
@@ -39,7 +40,7 @@ class Apinfo:
         container = self.driver.find_element_by_id('vagas')
         buttons = container.find_elements_by_class_name('btn3 ')
         for button in buttons:
-            print(button.get_attribute('href'))
+            output(self.driver ,button.get_attribute('href'))
 
     def subscribeJob(self):
         CPF = '######'
@@ -59,7 +60,7 @@ class Apinfo:
         secs => seconds that you want to wait
         return => none
         '''
-        print(f'{self.appName} Waiting {secs} secs')
+        output(self.driver ,f'{self.appName} Waiting {secs} secs')
         sleep(secs)
 
     def close(self):
@@ -68,6 +69,10 @@ class Apinfo:
 
         return:=> none
         '''
-        print(f'{self.appName} closing...')
+        try:
+            output(self.driver ,f'{self.appName} closing...')
+
+        except AttributeError:
+            pass
+        
         self.driver.quit()
-        eel.enableButton()

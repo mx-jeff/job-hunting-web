@@ -1,3 +1,4 @@
+from src.utils.status_file import Status_job
 from flask import Flask
 from flask_socketio import SocketIO, emit
 from src.controllers.infojobsController import searchInfojob
@@ -8,6 +9,7 @@ BASE_URL = "http://localhost:5000"
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "test"
 socketio = SocketIO(app, cors_allowed_origins="*")
+pending = Status_job()
 
 
 @app.route('/')
@@ -32,14 +34,20 @@ def shutdown():
 @app.route('/close_socket')
 def close_socket():
     socketio.stop()
-    socketio.run(app)
-    return "Shutting down..."
+    exec('*.py')
+    # return "Shutting down..."
 
 
 @socketio.on('close')
 def close_connection():
-    socketio.stop()
-    socketio.run(app)
+    # socketio.stop()
+    # socketio.run(app)
+    pending.set_status('1')
+
+
+@socketio.on('open')
+def open_connection():
+    pending.set_status('0')
 
 
 @socketio.on('job')

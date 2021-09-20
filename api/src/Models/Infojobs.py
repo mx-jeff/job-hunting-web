@@ -13,14 +13,14 @@ class Infojobs:
 
     def __init__(self):
         self.driver = setSelenium('http://www.infojobs.com.br')
-        output(f'{self.appName} Iniciando...')
+        output(self.driver, f'{self.appName} Iniciando...')
 
     def login(self, login, user_password):
         """
         Login to Infojobs, with credentials
         :return: None
         """
-        output(f'{self.appName} Tentando logar...')        
+        output(self.driver, f'{self.appName} Tentando logar...')        
         
         try:
             self.loginForm = self.driver.find_element_by_xpath('//*[@id="ctl00_cAccess_aLogin"]')
@@ -28,14 +28,14 @@ class Infojobs:
         
         except:
             try:
-                output(f"{self.appName} Passando verificação de cookies")
+                output(self.driver, f"{self.appName} Passando verificação de cookies")
                 self.clearCookie()
                 sleep(5)
                 self.loginForm = self.driver.find_element_by_xpath('//*[@id="ctl00_cAccess_aLogin"]')
                 self.loginForm.click()
 
             except Exception as error:
-                output(f'[ERRO] {error}, contate o administrador')
+                output(self.driver, f'[ERRO] {error}, contate o administrador')
                 self.quitSearch()
                 emit('error', str(f'[ERRO] {error}, contate o administrador'))
 
@@ -54,7 +54,7 @@ class Infojobs:
             print(f'{self.appName} Login inválido ou campos errados!')
             return
 
-        output(f'{self.appName} Logado com sucesso')
+        output(self.driver, f'{self.appName} Logado com sucesso')
 
     def searchList(self, jobType):
         """
@@ -62,7 +62,7 @@ class Infojobs:
         :param jobType: Type of job - String
         :return: None
         """
-        output(f'{self.appName} Selecionando vaga...')
+        output(self.driver, f'{self.appName} Selecionando vaga...')
         try:
             self.searchJob = self.driver.find_element_by_name('Palabra')
         except:
@@ -75,14 +75,14 @@ class Infojobs:
 
         self.searchJob.send_keys(str(jobType))
         self.searchJob.send_keys(Keys.ENTER)
-        output(f'{self.appName} Feito!, buscando vagas para {jobType}')
+        output(self.driver, f'{self.appName} Feito!, buscando vagas para {jobType}')
 
     def searchOptions(self):
         """
         Select the options to customize job options
         :return: None
         """
-        output(f'{self.appName} Ajustando opções...')
+        output(self.driver, f'{self.appName} Ajustando opções...')
         try:
             # Select to São Paulo
             self.cityOptionSaoPaulo = self.driver.find_element_by_xpath(
@@ -98,14 +98,14 @@ class Infojobs:
                 '//*[@id="ctl00_phMasterPage_cFacetContractWorkType_rptFacet_ctl01_chkItem"]').click()
 
         sleep(10)
-        output(f"{self.appName} Feito!")
+        output(self.driver, f"{self.appName} Feito!")
 
     def getJob(self):
         """
         Get links from container of jobs to array and clicks one-by-one
         :return: none
         """
-        output(f'{self.appName} Selecionando vagas disponiveis...')
+        output(self.driver, f'{self.appName} Selecionando vagas disponiveis...')
         try:
             while True:
                 sleep(5)
@@ -126,7 +126,7 @@ class Infojobs:
                 self.driver.find_element_by_xpath('//*[@id="ctl00_phMasterPage_cGrid_Paginator1_lnkNext"]').click()
 
         except Exception as error:
-            output(error)
+            output(self.driver, error)
             # emit('error', error)
             pass          
 
@@ -141,7 +141,7 @@ class Infojobs:
             driver.find_element_by_xpath('//*[@id="ctl00_phMasterPage_cHeader_lnkCandidatar"]').click()
             sleep(5)
             # subscribe or not?
-            output(f'{self.appName} Vaga cadastrada!')
+            output(self.driver, f'{self.appName} Vaga cadastrada!')
 
             #back to jobs container
             driver.back()
@@ -149,7 +149,7 @@ class Infojobs:
             driver.back()
 
         except Exception as error:
-            output(f'{self.appName} Vaga não encontrada!')
+            output(self.driver, f'{self.appName} Vaga não encontrada!')
             pass
 
     def clearCookie(self):
@@ -159,6 +159,11 @@ class Infojobs:
             self.driver.find_element_by_id('didomi-notice-agree-button').click()
 
     def quitSearch(self):
-        output(f'{self.appName} Saindo... volte sempre :)')
+        try:
+            output(self.driver, f'{self.appName} Saindo... volte sempre :)')
+        
+        except AttributeError:
+            pass
+
         self.driver.quit()
         emit('error', str('Saindo..'))

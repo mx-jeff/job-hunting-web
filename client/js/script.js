@@ -35,7 +35,8 @@ socket.on('error', err => {
 })
 
 // Enviar ao backend
-btn.addEventListener('click',() => {
+btn.addEventListener('click', e => {
+    e.preventDefault()
     const [email_infojobs, password_infojobs, email_vagas, password_vagas] = credentails
 
     const JSONcredentails = localStorage.getItem('credentails')
@@ -45,6 +46,7 @@ btn.addEventListener('click',() => {
     stopBtn.disabled = false
     info.style.display = 'block'
 
+    // socket.emit('open')
     socket.emit(
         "job",
         empresa.value, 
@@ -60,11 +62,6 @@ btn.addEventListener('click',() => {
 // Parar processo se existir
 stopBtn.addEventListener('click', async e => {
     e.preventDefault()
-    // stopBtn.disabled = true
-    // const response = await fetch(`${BASE_URL}:${PORT}/shutdown`)
-    // console.log(response)
-    // if (response.status != 200) return alert('Erro na requisição ou processo não existe!')
-    // alert('Encerrando...')
     
     socket.emit('close')
 
