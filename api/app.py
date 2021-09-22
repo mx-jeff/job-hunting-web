@@ -1,15 +1,17 @@
-from src.utils.status_file import Status_job
-from flask import Flask
-from flask_socketio import SocketIO, emit
+import socketio
+from factory import init_socket
+from flask_socketio import emit
+
+# from src.utils.status_file import Status_job
+from src.controllers.statusController import insert, remove_db
 from src.controllers.infojobsController import searchInfojob
 from src.controllers.vagasComController import searchVagasCom
+from src.Models.database import app
 
+socketio = init_socket(app)
 
 BASE_URL = "http://localhost:5000"
-app = Flask(__name__)
-app.config['SECRET_KEY'] = "test"
-socketio = SocketIO(app, cors_allowed_origins="*")
-pending = Status_job()
+# pending = Status_job()
 
 
 @app.route('/')
@@ -42,12 +44,14 @@ def close_socket():
 def close_connection():
     # socketio.stop()
     # socketio.run(app)
-    pending.set_status('1')
+    remove_db()
+    # pending.set_status('0')
 
 
 @socketio.on('open')
 def open_connection():
-    pending.set_status('0')
+    # pending.set_status('0')
+    insert('open')
 
 
 @socketio.on('job')
@@ -73,5 +77,5 @@ def connect_to_websocket(data):
 
 
 if __name__ == '__main__':
-    # app.debug = True
+    app.debug = True
     socketio.run(app)

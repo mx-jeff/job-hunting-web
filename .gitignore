@@ -1,2 +1,3 @@
 status.txt
 venv
+*.sqlite
