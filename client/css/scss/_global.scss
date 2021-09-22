@@ -7,8 +7,11 @@ body {
 
 #log {
     resize: none;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     height: 10rem !important;
+    border: none;
+    outline: none;
+    background: inherit;
 }
 
 .dz0-flex-container {

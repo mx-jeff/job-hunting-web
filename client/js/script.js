@@ -7,15 +7,18 @@ const credentails = document.querySelectorAll('#modelId input[type=text], input[
 const saveCredentials = document.querySelector('#save-credentials')
 let loadSpin
 
+const snipper = `
+    <div id="load" class="d-flex align-items-center">
+        <strong>Carregando...</strong>
+        <div class="spinner-border ml-auto text-primary" role="status" aria-hidden="true"></div>
+    </div>`
 
 const BASE_URL = "http://localhost"
 const PORT = 5000
 
-const socket = io(`${BASE_URL}:${PORT}`);
+const socket = io(`${BASE_URL}:${PORT}`, { transport: ['websocket'] })
 
-info.style.display = "none"
 stopBtn.disabled = true
-
 socket.on('connect', function () {
     socket.emit('init', "connect");
 });
@@ -26,27 +29,34 @@ socket.on('message', message => {
     console.log(message)
     info.innerHTML += `${message} \n`
     info.scrollTo(0, info.scrollHeight);
+
+    if(message.length > 0){
+        stopBtn.disabled = false
+        btn.disabled = true
+    }
+
+    if(message == "[Infojobs] Saindo... volte sempre :)" || message == "[Vagas.com] Saindo... volte sempre :)"){
+        btn.disabled = false
+        stopBtn.disabled = true
+    }
 })
 
 // habilitar botão ao sinal de erro
 socket.on('error', err => {
     btn.disabled = false
-    info.style.display = "none"
 })
 
 // Enviar ao backend
 btn.addEventListener('click', e => {
-    e.preventDefault()
+    e.preventDefault() 
     const [email_infojobs, password_infojobs, email_vagas, password_vagas] = credentails
 
     const JSONcredentails = localStorage.getItem('credentails')
     const storageCredentails = JSON.parse(JSONcredentails)
 
-    btn.disabled = true
-    stopBtn.disabled = false
-    info.style.display = 'block'
-
-    // socket.emit('open')
+    console.log('opening connection...')
+    socket.emit('open')
+    console.log('sending data...')
     socket.emit(
         "job",
         empresa.value, 
@@ -56,18 +66,16 @@ btn.addEventListener('click', e => {
         storageCredentails['Email vagas.com'] ?? email_vagas.value, 
         storageCredentails['Senha vagas.com'] ?? password_vagas.value
     )
-    loadSpin = document.querySelector('#load')
 })
 
 // Parar processo se existir
-stopBtn.addEventListener('click', async e => {
-    e.preventDefault()
+stopBtn.addEventListener('click', click => {
+    click.preventDefault()
     
     socket.emit('close')
-
+        
     btn.disabled = false
     stopBtn.disabled = true
-    info.style.display = "none"
 })
 
 // Salvar as crendenciais no local storage
