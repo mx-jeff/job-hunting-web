@@ -23,4 +23,5 @@ def remove_db():
 
 def selectAll():
     data = db.session.query(Status.status).all()
-    print(str(data))
+    # print(str(data))
+    return data

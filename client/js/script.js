@@ -1,4 +1,3 @@
-const socket = io("http://localhost:5000");
 const empresa = document.querySelector('#empresa')
 const vaga = document.querySelector('#vaga')
 const btn = document.querySelector('#send')
@@ -12,6 +11,7 @@ let loadSpin
 const BASE_URL = "http://localhost"
 const PORT = 5000
 
+const socket = io(`${BASE_URL}:${PORT}`);
 
 info.style.display = "none"
 stopBtn.disabled = true

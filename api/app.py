@@ -1,4 +1,5 @@
 import socketio
+import eventlet
 from factory import init_socket
 from flask_socketio import emit
 
@@ -8,8 +9,9 @@ from src.controllers.infojobsController import searchInfojob
 from src.controllers.vagasComController import searchVagasCom
 from src.Models.database import app
 
-socketio = init_socket(app)
 
+eventlet.monkey_patch()
+socketio = init_socket(app)
 BASE_URL = "http://localhost:5000"
 # pending = Status_job()
 
