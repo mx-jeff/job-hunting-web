@@ -15,6 +15,7 @@ socketio = init_socket(app)
 BASE_URL = "http://localhost:5000"
 
 
+
 @app.route('/')
 def index():
     return "Welcome"
