@@ -20,10 +20,12 @@ taskkill /F /IM "chrome.exe" /T
 - [x] Todo: split JScode into modules
 - [ ] Todo: Eventlet
     - [x] persist connection
+    - [ ] reconnect socket on reload
     - [ ] Find and solve eventlet errors
 
 
 - [ ] Todo: Deploy
-    - [ ] set Postgesql Database
+    - [x] set Postgesql Database
+    - [ ] set server on client
     - [ ] Deploy Backend/frontend with server, in heroku and netlify
     - [ ] find erros and solve-it 

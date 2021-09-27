@@ -11,6 +11,8 @@ export function listener_socket(){
     const socket = init_socket()
     
     stopBtn.disabled = true
+    info.style.display = "None"
+
     socket.on('connect', function () {
         socket.emit('init', "connect");
     });
@@ -26,6 +28,7 @@ export function listener_socket(){
             spinner.innerHTML = ""
             stopBtn.disabled = false
             btn.disabled = true
+            info.style.display = "Block"
         }
     
         if(message == "[Infojobs] Saindo... volte sempre :)" || message == "[Vagas.com] Saindo... volte sempre :)"){
