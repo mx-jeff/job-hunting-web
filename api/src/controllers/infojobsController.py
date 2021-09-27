@@ -15,7 +15,7 @@ def searchInfojob(jobTarget, login, password):
 
     except Exception as error:
         output(jobs, "Algum problema ocorreu e/ou as inforamções estão erradas!")
-        output(jobs, f"Erro {error}, contate o adminstrador do sistema")
+        # output(jobs, f"Erro {error}, contate o adminstrador do sistema")
         jobs.quitSearch()
         emit('error', str(error))
 

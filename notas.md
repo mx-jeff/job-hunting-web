@@ -10,16 +10,20 @@ taskkill /F /IM "chrome.exe" /T
     - [/] Use Different Thread
     - [x] ignore and procced with adapt UI
     - [/] use eventlet
+    - [/] remove form tag
+    - [/] use innerText instead of innerHTML
+    - [x] use cloud database
+
 
 - [x] Todo: fix logic when runs more time
-- [ ] Todo: add back the load spin
-- [ ] Todo: split JScode into modules
+- [x] Todo: add back the load spin
+- [x] Todo: split JScode into modules
 - [ ] Todo: Eventlet
-    - [ ] persist connection
+    - [x] persist connection
     - [ ] Find and solve eventlet errors
 
 
 - [ ] Todo: Deploy
-    - [ ] Deploy Backend/frontend with server, in heroku and netlify
     - [ ] set Postgesql Database
+    - [ ] Deploy Backend/frontend with server, in heroku and netlify
     - [ ] find erros and solve-it 

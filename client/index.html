@@ -23,74 +23,73 @@
     <section class="container">
         <div class="row">
             <div class="col-12 col-lg-6 mx-lg-auto">
-                <form action="#">
-                    <div class="form-group">
-                        <label for="empresa"></label>
-                        <select class="form-control" id="empresa">
-                            <option value="#" disabled selected>Escolha uma empresa</option>
-                            <option value="infojobs">Infojobs</option>
-                            <option value="vagas.com">Vagas.com</option>
-                            <option value="apinfo">APinfo</option>
-                        </select>
-                    </div>
+                
+                <div class="form-group">
+                    <label for="empresa"></label>
+                    <select class="form-control" id="empresa">
+                        <option value="#" disabled selected>Escolha uma empresa</option>
+                        <option value="infojobs">Infojobs</option>
+                        <option value="vagas.com">Vagas.com</option>
+                        <option value="apinfo">APinfo</option>
+                    </select>
+                </div>
 
-                    <div class="form-group">
-                        <label for="vaga"></label>
-                        <input type="text" id="vaga" class="form-control" placeholder="Digite a vaga selecionada..."
-                            aria-describedby="helpId">
-                    </div>
+                <div class="form-group">
+                    <label for="vaga"></label>
+                    <input type="text" id="vaga" class="form-control" placeholder="Digite a vaga selecionada..."
+                        aria-describedby="helpId">
+                </div>
 
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modelId">
-                        Login
-                    </button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modelId">
+                    Login
+                </button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Credenciais de login</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                <!-- Modal -->
+                <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Credenciais de login</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="email-infojobs">Infojobs</label>
+                                    <input type="text" id="email-infojobs" class="form-control"
+                                        placeholder="E-mail do infojobs" aria-describedby="helpId">
+
+                                    <label for="passwornd-infojobs"></label>
+                                    <input type="password" id="password-infojobs" class="form-control"
+                                        placeholder="Senha do infojobs" aria-describedby="helpId">
                                 </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="email-infojobs">Infojobs</label>
-                                        <input type="text" id="email-infojobs" class="form-control"
-                                            placeholder="E-mail do infojobs" aria-describedby="helpId">
 
-                                        <label for="passwornd-infojobs"></label>
-                                        <input type="password" id="password-infojobs" class="form-control"
-                                            placeholder="Senha do infojobs" aria-describedby="helpId">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="email-vagas">Vagas.com</label>
+                                    <input type="text" id="email-vagas" class="form-control"
+                                        placeholder="E-mail vagas.com" aria-describedby="helpId">
 
-                                    <div class="form-group">
-                                        <label for="email-vagas">Vagas.com</label>
-                                        <input type="text" id="email-vagas" class="form-control"
-                                            placeholder="E-mail vagas.com" aria-describedby="helpId">
-
-                                        <label for="passwornd-vagas"></label>
-                                        <input type="password" id="password-vagas" class="form-control"
-                                            placeholder="Senha vagas.com" aria-describedby="helpId">
-                                    </div>
-
+                                    <label for="passwornd-vagas"></label>
+                                    <input type="password" id="password-vagas" class="form-control"
+                                        placeholder="Senha vagas.com" aria-describedby="helpId">
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" id="save-credentials" class="btn btn-primary"
-                                        data-dismiss="modal">Save</button>
-                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="save-credentials" class="btn btn-primary"
+                                    data-dismiss="modal">Save</button>
                             </div>
                         </div>
                     </div>
-                    <!-- Fim do modal -->
+                </div>
+                <!-- Fim do modal -->
 
-                    <input type="submit" id="send" class="btn btn-primary" value="Buscar">
-                    <button id="stop" class="btn btn-secondary">Parar busca</button>
-                </form>
+                <button type="submit" id="send" class="btn btn-primary">Buscar</button>
+                <button type="submit" id="stop" class="btn btn-secondary">Parar busca</button>
+                
             </div>
         </div>
     </section>
@@ -111,7 +110,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
         crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
+    <script src="js/main.js" type="module"></script>
 </body>
 
 </html>

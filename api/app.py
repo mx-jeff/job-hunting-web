@@ -35,7 +35,6 @@ def handle_job(conpany, job, infojobs_user, infojobs_password, vagas_user, vagas
     emit('message', 'Iniciando...')
     print('iniciando...')
     print("conpany: ",conpany)
-    insert('open')
 
 
     if conpany == "infojobs":
