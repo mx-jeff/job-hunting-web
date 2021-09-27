@@ -2,6 +2,7 @@ from flask import Flask
 from flask_socketio import SocketIO
 import os
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
 
 
 ROOT_DIR = ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -15,7 +16,8 @@ def init_app():
 
 
 def init_db(app):
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://jkpdcxvy:2r55GlNMqYFfJIkJKg4fsNtHaTgg1f7Y@tuffi.db.elephantsql.com/jkpdcxvy" #"sqlite:///status.sqlite"
+    load_dotenv(dotenv_path=ROOT_DIR)
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('POSTGRESQL_LINK') #"sqlite:///status.sqlite"
     db = SQLAlchemy(app)
     return db
 

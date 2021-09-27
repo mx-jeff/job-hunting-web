@@ -18,6 +18,7 @@ taskkill /F /IM "chrome.exe" /T
 - [x] Todo: fix logic when runs more time
 - [x] Todo: add back the load spin
 - [x] Todo: split JScode into modules
+- [ ] Todo: add validation and avoid XSS on input
 - [ ] Todo: Eventlet
     - [x] persist connection
     - [ ] reconnect socket on reload
@@ -26,6 +27,8 @@ taskkill /F /IM "chrome.exe" /T
 
 - [ ] Todo: Deploy
     - [x] set Postgesql Database
+    - [ ] deploy subfolder
+    - [ ] use dotenv
     - [ ] set server on client
     - [ ] Deploy Backend/frontend with server, in heroku and netlify
     - [ ] find erros and solve-it 

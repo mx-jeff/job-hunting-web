@@ -1,4 +1,4 @@
-import { btn, stopBtn, credentails, spinner } from './tags.js'
+import { btn, stopBtn, credentails, spinner, info } from './tags.js'
 import { init_socket } from "./socket.js"
 
 
@@ -9,6 +9,7 @@ export function setEvent(){
     btn.addEventListener('click', e => {
         const [email_infojobs, password_infojobs, email_vagas, password_vagas] = credentails
 
+        info.innerHTML = ""
         spinner.innerHTML = `<div class="spinner-border text-primary" role="status">
             <span class="sr-only">Loading...</span>
         </div> Aguarde...`
