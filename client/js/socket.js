@@ -1,9 +1,10 @@
 import { btn, stopBtn, info, spinner } from './tags.js'
+import { initApp } from "./initApp.js"
+
 
 export function init_socket(){
-    const BASE_URL = "http://localhost"
-    const PORT = 5000
-    return io(`${BASE_URL}:${PORT}`, { transports: ['websocket'], upgrade: false })
+    const BASE_URL = initApp()
+    return io(`${BASE_URL}`, { transports: ['websocket'], upgrade: false })
 }
 
 
