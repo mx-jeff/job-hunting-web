@@ -19,7 +19,7 @@ def init_app():
 
 def init_db(app):
     load_dotenv(dotenv_path=ROOT_DIR)
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('POSTGRESQL_LINK') #"sqlite:///status.sqlite"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('POSTGRESQL_LINK')
     db = SQLAlchemy(app)
     return db
 

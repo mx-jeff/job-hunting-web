@@ -13,10 +13,10 @@ export async function initApp(){
     const BASE_URL = (DEV) ? "http://localhost:5000" : "https://job-hunting-socket.herokuapp.com"
 
     const response = await fetch(BASE_URL)
-    if(response.status != 200) return Error('Erro ao conectar, verifique com o administrador do sistema')
+    if(response.status != 200) return 
 
     spinner.innerHTML = ""
-    btn.disabled = true
+    btn.disabled = false
 
     return BASE_URL
 }

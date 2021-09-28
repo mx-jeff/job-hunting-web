@@ -1,4 +1,4 @@
-import { listener_socket } from './socket.js'
+import { init_socket, listener_socket } from './socket.js'
 import { setEvent } from './event.js'
 import { setLocalStorage } from './localStorage.js'
 

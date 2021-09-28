@@ -21,14 +21,15 @@ taskkill /F /IM "chrome.exe" /T
 - [ ] Todo: add validation and avoid XSS on input
 - [ ] Todo: Eventlet
     - [x] persist connection
-    - [ ] reconnect socket on reload
+    - [x] reconnect socket on reload
     - [ ] Find and solve eventlet errors
 
 
 - [ ] Todo: Deploy
     - [x] set Postgesql Database
-    - [ ] deploy subfolder
-    - [ ] use dotenv
+    - [x] deploy subfolder
+    - [x] use dotenv
+    - [ ] close driver on disconnect
     - [ ] set server on client
     - [ ] Deploy Backend/frontend with server, in heroku and netlify
     - [ ] find erros and solve-it 

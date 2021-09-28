@@ -2,14 +2,14 @@ import { btn, stopBtn, info, spinner } from './tags.js'
 import { initApp } from "./initApp.js"
 
 
-export function init_socket(){
-    const BASE_URL = initApp()
+export async function init_socket(){
+    const BASE_URL = await initApp()
     return io(`${BASE_URL}`, { transports: ['websocket'], upgrade: false })
 }
 
 
-export function listener_socket(){
-    const socket = init_socket()
+export async function listener_socket(){
+    const socket = await init_socket()
     
     stopBtn.disabled = true
     info.style.display = "None"
