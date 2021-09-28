@@ -2,8 +2,8 @@ import { btn, stopBtn, credentails, spinner, info } from './tags.js'
 import { init_socket } from "./socket.js"
 
 
-export async function setEvent(){
-    const socket = await init_socket()
+export function setEvent(){
+    const socket = init_socket()
 
     // Enviar ao backend
     btn.addEventListener('click', e => {

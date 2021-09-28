@@ -7,3 +7,6 @@ export const stopBtn = document.querySelector('#stop')
 export const credentails = document.querySelectorAll('#modelId input[type=text], input[type=password]')
 export const saveCredentials = document.querySelector('#save-credentials')
 export const form = document.querySelector('form#data')
+
+const DEV = false
+export const BASE_URL = (DEV) ? "http://localhost:5000" : "https://job-hunting-socket.herokuapp.com"
