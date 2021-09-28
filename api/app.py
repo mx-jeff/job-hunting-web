@@ -47,6 +47,11 @@ def handle_job(conpany, job, infojobs_user, infojobs_password, vagas_user, vagas
         searchVagasCom(job, vagas_user, vagas_password)
 
 
+@socketio.on('disconnect')
+def close_app():
+    remove_db()
+
+
 @socketio.on('init')
 def connect_to_websocket(data):
     print(data)

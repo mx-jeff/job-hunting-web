@@ -19,17 +19,27 @@ taskkill /F /IM "chrome.exe" /T
 - [x] Todo: add back the load spin
 - [x] Todo: split JScode into modules
 - [ ] Todo: add validation and avoid XSS on input
-- [ ] Todo: Eventlet
+- [x] Todo: Eventlet
     - [x] persist connection
     - [x] reconnect socket on reload
-    - [ ] Find and solve eventlet errors
+    - [x] Find and solve eventlet errors
 
 
-- [ ] Todo: Deploy
+- [x] Todo: Deploy
     - [x] set Postgesql Database
     - [x] deploy subfolder
     - [x] use dotenv
-    - [ ] close driver on disconnect
-    - [ ] set server on client
-    - [ ] Deploy Backend/frontend with server, in heroku and netlify
-    - [ ] find erros and solve-it 
+    - [x] close driver on disconnect
+    - [x] set server on client
+    - [x] Deploy Backend/frontend with server, in heroku and netlify
+
+- [ ] Todo: Seo - add SEO tecnictes on the website
+    - [ ] Add custom domain
+    - [ ] Add SSL
+    - [ ] Add https
+    - [ ] set h1 tags
+    - [ ] set propagandas
+
+- [ ] Todo: Monetize
+    - [ ] add key methdo to expire after some time
+    - [ ] add payment method
