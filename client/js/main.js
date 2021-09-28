@@ -1,7 +1,7 @@
 import { listener_socket } from './socket.js'
 import { setEvent } from './event.js'
 import { setLocalStorage } from './localStorage.js'
-import { initApp } from "./initApp"
+import { initApp } from "./initApp.js"
 
 
 function main() {
