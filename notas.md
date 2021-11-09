@@ -3,6 +3,7 @@ close = 1
 
 taskkill /F /IM "chrome.exe" /T
 
+
 - [x] Todo: find a way to avoid refresh when emit job to client/server (File, database, etc)
     - [/] Use File handler
     - [/] Use Database(SQLite)
@@ -14,6 +15,7 @@ taskkill /F /IM "chrome.exe" /T
     - [/] use innerText instead of innerHTML
     - [x] use cloud database
 
+Deploy to api folder: git subtree push --prefix api heroku master
 
 - [x] Todo: fix logic when runs more time
 - [x] Todo: add back the load spin
