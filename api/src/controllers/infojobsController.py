@@ -10,7 +10,7 @@ def searchInfojob(jobTarget, user, password):
     :login: infojobs user to login
     :password: password to login
     """
-    jobs = Infojobs(chromedriver_path="C:\Selenium\chromedriver.exe", headless=True)
+    jobs = Infojobs(headless=True)
     site_job = jobs.appName
     job_type = jobTarget
 

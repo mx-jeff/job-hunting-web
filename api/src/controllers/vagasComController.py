@@ -3,7 +3,7 @@ from jobhunting.Models.vagasCom import VagasCom
 
 
 def searchVagasCom(targetJob, vagasUser, vagasPassword):
-    vagas = VagasCom(chromedriver_path="C:\Selenium\chromedriver.exe", headless=True)
+    vagas = VagasCom(headless=True)
     job_site = vagas.appName
 
     output(vagas, f'{job_site} Iniciando...')
