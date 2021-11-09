@@ -31,7 +31,8 @@ export function listener_socket(){
             info.style.display = "Block"
         }
     
-        if(message == "[Infojobs] Saindo... volte sempre :)" || message == "[Vagas.com] Saindo... volte sempre :)"){
+        if((message == "[Infojobs] Saindo... volte sempre :)") || (message == "[Vagas.com] Saindo... volte sempre :)")){
+            console.log('Reativando...')
             btn.disabled = false
             stopBtn.disabled = true
         }

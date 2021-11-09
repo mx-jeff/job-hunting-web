@@ -1,4 +1,5 @@
-from src.Models.database import db, Status
+from factory import db
+from src.Models.database import Status
 
 
 def create_db():

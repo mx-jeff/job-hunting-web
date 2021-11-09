@@ -1,8 +1,4 @@
-from factory import init_db, init_app
-
-
-app = init_app()
-db = init_db(app)
+from factory import db
 
 
 class Status(db.Model):
