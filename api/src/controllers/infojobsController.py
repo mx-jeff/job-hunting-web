@@ -27,9 +27,9 @@ def searchInfojob(jobTarget, user, password):
         jobs.searchList(job_type)
         output(jobs, f'{site_job} Feito!, buscando vagas para {jobTarget}')
 
-        output(jobs, f'{site_job} Ajustando opções...')
-        jobs.searchOptions()
-        output(jobs, f"{site_job} Feito!")
+        # output(jobs, f'{site_job} Ajustando opções...')
+        # jobs.searchOptions()
+        # output(jobs, f"{site_job} Feito!")
 
         output(jobs, f'{site_job} Selecionando vagas disponiveis...')
         jobs.getJob()
