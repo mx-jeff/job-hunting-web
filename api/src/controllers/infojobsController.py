@@ -1,6 +1,7 @@
 from src.utils.output import output
-from jobhunting.Models.infojobs import Infojobs
+from jobhunting.Models import Infojobs
 from scrapper_boilerplate import setSelenium
+
 
 def searchInfojob(jobTarget, user, password):
     """
