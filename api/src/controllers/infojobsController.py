@@ -1,5 +1,5 @@
 from src.utils.output import output
-from jobhunting.Models import Infojobs
+from jobhunting.Models.Infojobs import Infojobs
 from scrapper_boilerplate.setup import setSelenium
 
 
