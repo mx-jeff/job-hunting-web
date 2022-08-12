@@ -1,10 +1,9 @@
-from dotenv.main import load_dotenv
-from src.controllers.statusController import selectAll
 import socketio
 import eventlet
-from factory import init_socket
 from flask_socketio import emit
+from factory import init_socket
 
+from src.controllers.statusController import selectAll
 from src.controllers.statusController import insert, remove_db
 from src.controllers.infojobsController import searchInfojob
 from src.controllers.vagasComController import searchVagasCom
