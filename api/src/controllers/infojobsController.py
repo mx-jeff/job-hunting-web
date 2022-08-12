@@ -10,7 +10,7 @@ def searchInfojob(jobTarget, user, password):
     :login: infojobs user to login
     :password: password to login
     """
-    jobs = Infojobs(headless=True)
+    jobs = Infojobs()
     site_job = jobs.appName
     job_type = jobTarget
 
