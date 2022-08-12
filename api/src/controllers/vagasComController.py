@@ -1,9 +1,12 @@
 from src.utils.output import output
 from jobhunting.Models.vagasCom import VagasCom
+from scrapper_boilerplate.setup import setSelenium
 
 
 def searchVagasCom(targetJob, vagasUser, vagasPassword):
-    vagas = VagasCom(headless=True)
+    driver = setSelenium()
+    driver.set_window_size(1400, 1000)
+    vagas = VagasCom(driver)
     job_site = vagas.appName
 
     output(vagas, f'{job_site} Iniciando...')

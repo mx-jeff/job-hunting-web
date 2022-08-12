@@ -1,6 +1,6 @@
 from src.utils.output import output
 from jobhunting.Models import Infojobs
-from scrapper_boilerplate import setSelenium
+from scrapper_boilerplate.setup import setSelenium
 
 
 def searchInfojob(jobTarget, user, password):
@@ -11,7 +11,10 @@ def searchInfojob(jobTarget, user, password):
     :login: infojobs user to login
     :password: password to login
     """
-    jobs = Infojobs(driver=setSelenium())
+
+    driver = setSelenium()
+    driver.set_window_size(1400, 1000)
+    jobs = Infojobs(driver)
     site_job = jobs.appName
     job_type = jobTarget
 
