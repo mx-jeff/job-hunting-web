@@ -3,8 +3,8 @@ from jobhunting.Models.vagasCom import VagasCom
 from scrapper_boilerplate.setup import setSelenium
 
 
-def searchVagasCom(targetJob, vagasUser, vagasPassword):
-    driver = setSelenium()
+def searchVagasCom(targetJob, vagasUser, vagasPassword, auto_webdriver=False):
+    driver = setSelenium(remote_webdriver=auto_webdriver)
     driver.set_window_size(1400, 1000)
     vagas = VagasCom(driver)
     job_site = vagas.appName
@@ -41,13 +41,13 @@ def searchVagasCom(targetJob, vagasUser, vagasPassword):
             for index, target in enumerate(vagas.targetLink):
                 if target.startswith("https://") or target.startswith("http://"):
                     status = vagas.subscribeJob(target)
-                    if status == "Vaga cadastrada!":
+                    if status:
                         success += 1
 
                     else:
                         fail += 1
 
-                    output(vagas, f"{job_site} {index + 1} vaga, status: {status}")
+                    output(vagas, f"{job_site} {index + 1}/{len(vagas.targetLink)} vaga, status: {'Vaga cadastrada!' if status else 'Vaga não cadastrada!'}")
 
         except Exception:  
             output(vagas, f"{job_site} erro ao se inscrever!")

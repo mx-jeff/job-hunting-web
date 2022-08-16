@@ -35,6 +35,14 @@ Deploy to api folder: git subtree push --prefix api heroku master
     - [x] set server on client
     - [x] Deploy Backend/frontend with server, in heroku and netlify
 
+
+- [ ] Todo: error handling:
+    - add telegram error msg and screenshoot check
+
+- [ ] Todo: logging
+    - [ ] remove logging error print on screen
+    - [ ] None = "Vaga não encontrada"
+
 - [ ] Todo: Seo - add SEO tecnictes on the website
     - [ ] Add custom domain
     - [ ] Add SSL

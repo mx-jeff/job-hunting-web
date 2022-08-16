@@ -1,3 +1,4 @@
+import os
 import socketio
 import eventlet
 from flask_socketio import emit

@@ -3,7 +3,7 @@ from jobhunting.Models.Infojobs import Infojobs
 from scrapper_boilerplate.setup import setSelenium
 
 
-def searchInfojob(jobTarget, user, password):
+def searchInfojob(jobTarget, user, password, auto_webdriver=False):
     """
     Infojobs automatic subscription job
 
@@ -12,7 +12,7 @@ def searchInfojob(jobTarget, user, password):
     :password: password to login
     """
 
-    driver = setSelenium()
+    driver = setSelenium(remote_webdriver=auto_webdriver)
     driver.set_window_size(1400, 1000)
     jobs = Infojobs(driver)
     site_job = jobs.appName
@@ -31,10 +31,6 @@ def searchInfojob(jobTarget, user, password):
         jobs.searchList(job_type)
         output(jobs, f'{site_job} Feito!, buscando vagas para {jobTarget}')
 
-        # output(jobs, f'{site_job} Ajustando opções...')
-        # jobs.searchOptions()
-        # output(jobs, f"{site_job} Feito!")
-
         output(jobs, f'{site_job} Selecionando vagas disponiveis...')
         jobs.getJob()
         output(jobs, f'{site_job} {len(jobs.jobsLink)} Vagas selecionadas!')
@@ -47,13 +43,13 @@ def searchInfojob(jobTarget, user, password):
             for index, target in enumerate(jobs.jobsLink):
                 if target.startswith("https://") or target.startswith("http://"):
                     status = jobs.subscribeJob(target)
-                    if status == "Vaga cadastrada!":
+                    if status:
                         success += 1
 
                     else:
                         fail += 1
 
-                    output(jobs, f"{site_job} {index + 1} vaga, status: {status}")
+                    output(jobs, f"{site_job} {index + 1}/{len(jobs.jobsLink)} vaga, status: {'vaga cadastrada' if status else 'vaga não cadastrada'}")
         
         except Exception:
             output(jobs, f"{site_job} Erro ao se cadastrar, saindo...")
@@ -65,6 +61,7 @@ def searchInfojob(jobTarget, user, password):
         output(jobs, f"{site_job} Saindo... volte sempre :)")
 
     except Exception as error:
+        driver.save_screenshot(f"{site_job}_error.png")
         jobs.quitSearch()
         output(jobs, "Algum problema ocorreu e/ou as inforamções estão erradas!")
         output(jobs, f"Erro {error}, contate o adminstrador do sistema")
