@@ -13,7 +13,7 @@ def searchInfojob(jobTarget, user, password, auto_webdriver=False):
     """
 
     driver = setSelenium(remote_webdriver=auto_webdriver)
-    driver.set_window_size(1400, 1000)
+    driver.set_window_size(1900, 1400)
     jobs = Infojobs(driver)
     site_job = jobs.appName
     job_type = jobTarget
