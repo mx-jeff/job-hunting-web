@@ -26,7 +26,6 @@ Deploy to api folder: git subtree push --prefix api heroku master
     - [x] reconnect socket on reload
     - [x] Find and solve eventlet errors
 
-
 - [x] Todo: Deploy
     - [x] set Postgesql Database
     - [x] deploy subfolder
@@ -35,13 +34,16 @@ Deploy to api folder: git subtree push --prefix api heroku master
     - [x] set server on client
     - [x] Deploy Backend/frontend with server, in heroku and netlify
 
-
 - [x] Todo: error handling:
     - [x] add telegram error msg and screenshoot check
 
 - [x] Todo: logging
     - [x] remove logging error print on screen
     - [x] None = "Vaga não encontrada"
+
+
+- [ ] Todo: bug catching
+    - [ ] view popup on login
 
 - [ ] Todo: Seo - add SEO tecnictes on the website
     - [ ] Add custom domain

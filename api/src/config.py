@@ -1,10 +1,14 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from os import environ
 import os
 import sys
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from os import environ
+from dotenv import load_dotenv
+
 from factory import ROOT_DIR
+
+load_dotenv()
 
 
 def resource_path(relative_path):
@@ -35,3 +39,7 @@ def setSelenium(link):
     driver.implicitly_wait(10)
 
     return driver
+
+
+TELEGRAM_BOT_TOKEN = environ.get('TELEGRAM_TOKEN')
+TELEGRAM_CHAT_ID = environ.get('TELEGRAM_CHAT_ID')
