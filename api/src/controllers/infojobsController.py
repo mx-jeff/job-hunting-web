@@ -64,11 +64,11 @@ def searchInfojob(jobTarget, user, password, auto_webdriver=False):
         output(jobs, f'{site_job} Vagas ja inscritas anteriomente ou requer preenchimento adicional: {fail}')
         output(jobs, f"{site_job} Saindo... volte sempre :)")
 
-    except Exception as error:
-        send_error_to_telegram(error=error, driver=driver, title=jobs.appName, telegram=telegram)
+    except Exception as err:
+        send_error_to_telegram(error=err, driver=driver, title=jobs.appName, telegram=telegram)
         jobs.quitSearch()
         output(jobs, "Algum problema ocorreu e/ou as inforamções estão erradas!")
-        output(jobs, f"Erro {error}, contate o adminstrador do sistema")
+        output(jobs, f"Erro {err}, contate o adminstrador do sistema")
         output(jobs, f"{site_job} Saindo... volte sempre :)")
 
     except KeyboardInterrupt:
