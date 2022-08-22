@@ -3,6 +3,8 @@ from jobhunting.Models.Infojobs import Infojobs
 from scrapper_boilerplate import setSelenium, TelegramBot
 from src.config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
+from jobhunting.utils.errors import send_error_to_telegram
+
 
 def searchInfojob(jobTarget, user, password, auto_webdriver=False):
     """
@@ -63,11 +65,7 @@ def searchInfojob(jobTarget, user, password, auto_webdriver=False):
         output(jobs, f"{site_job} Saindo... volte sempre :)")
 
     except Exception as error:
-        error_file = f"{site_job}_error.png"
-        driver.save_screenshot(error_file)
-        telegram.send_message("ERRO!")
-        telegram.send_message(str(error))
-        telegram.send_file(error_file)
+        send_error_to_telegram(error=error, driver=driver, title=jobs.appName, telegram=telegram)
         jobs.quitSearch()
         output(jobs, "Algum problema ocorreu e/ou as inforamções estão erradas!")
         output(jobs, f"Erro {error}, contate o adminstrador do sistema")
