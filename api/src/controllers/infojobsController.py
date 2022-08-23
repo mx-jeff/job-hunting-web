@@ -4,6 +4,7 @@ from scrapper_boilerplate import setSelenium, TelegramBot
 from src.config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
 from jobhunting.utils.errors import send_error_to_telegram
+from time import sleep
 
 
 def searchInfojob(jobTarget, user, password, auto_webdriver=False):
