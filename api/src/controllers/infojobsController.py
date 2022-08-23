@@ -38,8 +38,8 @@ def searchInfojob(jobTarget, user, password, auto_webdriver=False):
 
         output(jobs, f'{site_job} Selecionando vagas disponiveis...')
         
+        sleep(5) 
         if driver.current_url == "https://www.infojobs.com.br/Candidate/":
-            sleep(5) 
             output(f"[ERRO] Erro a procurar vaga de {job_type} :( tente novamente")
             jobs.quitSearch()
             return
