@@ -14,7 +14,7 @@ export function listener_socket(){
     info.style.display = "None"
 
     socket.on('connect', function () {
-        socket.emit('init', "connect");
+        socket.emit('init', "conected to server!");
     });
     
     // Mostrar progresso na tela

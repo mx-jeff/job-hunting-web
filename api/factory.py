@@ -26,6 +26,7 @@ def init_socket(app):
     socketio = SocketIO(app, cors_allowed_origins="*")
     return socketio
 
-print(os.environ.get("POSTGRESQL_LINK"))
+
+print("Banco de dados iniciados...")
 app = init_app()
 db = init_db(app, database_link=os.environ.get("POSTGRESQL_LINK"))

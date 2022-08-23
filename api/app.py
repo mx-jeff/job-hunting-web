@@ -40,17 +40,17 @@ def logout():
 
 @socketio.on('job')
 def handle_job(conpany, job, infojobs_user, infojobs_password, vagas_user, vagas_password):
-    emit('message', 'Iniciando...', broadcast=True, namespace='/')
+    # emit('message', 'Iniciando...', broadcast=True, namespace='/')
     print('iniciando...')
     print("conpany: ",conpany)
 
 
     if conpany == "infojobs":
-        emit('message', "iniciando infojobs...", broadcast=True, namespace='/')
+        emit('message', "[Infojobs] iniciando infojobs...", broadcast=True, namespace='/')
         searchInfojob(job, infojobs_user, infojobs_password)
 
     elif conpany == "vagas.com":
-        emit('message', 'iniciando vagas.com...', broadcast=True, namespace='/')
+        emit('message', '[Vagas.com] iniciando vagas.com...', broadcast=True, namespace='/')
         searchVagasCom(job, vagas_user, vagas_password)
 
 

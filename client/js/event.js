@@ -1,5 +1,6 @@
-import { btn, stopBtn, credentails, spinner, info } from './tags.js'
+import { btn, stopBtn, credentails, spinner, info, empresa, vaga } from './tags.js'
 import { init_socket } from "./socket.js"
+import { validate } from "./validation.js"
 
 
 export function setEvent(){
@@ -19,6 +20,11 @@ export function setEvent(){
 
         console.log('opening connection...')
         socket.emit('open')
+        const statusValidation = validate(empresa.value, vaga.value)
+        if(!statusValidation) {
+            return
+        }
+        
         console.log('sending data...')
         socket.emit(
             "job",
